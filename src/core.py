@@ -108,7 +108,7 @@ def requireRank(need_rank):
 	def f(func):
 		def wrapper(user, *args, **kwargs):
 			if not isinstance(user, User):
-				raise SyntaxError("you fucked up the decorator order")
+				raise SyntaxError("ты испортил порядок декораторов")
 			if user.rank < need_rank:
 				return
 			return func(user, *args, **kwargs)
@@ -203,7 +203,7 @@ def user_join(c_user):
 		with db.modifyUser(id=user.id) as user:
 			updateUserFromEvent(user, c_user)
 			user.setLeft(False)
-		logging.info("%s rejoined chat", user)
+		logging.info("%s перезашел в чат!", user)
 		return rp.Reply(rp.types.CHAT_JOIN)
 
 	# create new user
@@ -214,7 +214,7 @@ def user_join(c_user):
 	if not any(db.iterateUserIds()):
 		user.rank = RANKS.admin
 
-	logging.info("%s joined chat", user)
+	logging.info("%s зашел в чат!", user)
 	db.addUser(user)
 	ret = [rp.Reply(rp.types.CHAT_JOIN)]
 
@@ -228,7 +228,7 @@ def force_user_leave(user_id, blocked=True):
 	with db.modifyUser(id=user_id) as user:
 		user.setLeft()
 	if blocked:
-		logging.warning("Force leaving %s because bot is blocked", user)
+		logging.warning("Принудительный уход %s потому что бот заблокирован", user)
 	Sender.stop_invoked(user)
 
 @requireUser
@@ -295,7 +295,7 @@ def get_motd(user):
 def set_motd(user, arg):
 	with db.modifySystemConfig() as config:
 		config.motd = arg
-	logging.info("%s set motd to: %r", user, arg)
+	logging.info("%s поставил приветствие: %r", user, arg)
 	return rp.Reply(rp.types.SUCCESS)
 
 @requireUser
@@ -303,14 +303,14 @@ def toggle_debug(user):
 	with db.modifyUser(id=user.id) as user:
 		user.debugEnabled = not user.debugEnabled
 		new = user.debugEnabled
-	return rp.Reply(rp.types.BOOLEAN_CONFIG, description="Debug mode", enabled=new)
+	return rp.Reply(rp.types.BOOLEAN_CONFIG, description="Режим Разработчика", enabled=new)
 
 @requireUser
 def toggle_karma(user):
 	with db.modifyUser(id=user.id) as user:
 		user.hideKarma = not user.hideKarma
 		new = user.hideKarma
-	return rp.Reply(rp.types.BOOLEAN_CONFIG, description="Karma notifications", enabled=not new)
+	return rp.Reply(rp.types.BOOLEAN_CONFIG, description="Уведомления кармы", enabled=not new)
 
 @requireUser
 def get_tripcode(user):
@@ -349,7 +349,7 @@ def promote_user(user, username2, rank):
 		_push_system_message(rp.Reply(rp.types.PROMOTED_ADMIN), who=user2)
 	elif rank >= RANKS.mod:
 		_push_system_message(rp.Reply(rp.types.PROMOTED_MOD), who=user2)
-	logging.info("%s was promoted by %s to: %d", user2, user, rank)
+	logging.info("%s был повышен %s до: %d", user2, user, rank)
 	return rp.Reply(rp.types.SUCCESS)
 
 @requireUser
@@ -358,7 +358,7 @@ def send_mod_message(user, arg):
 	text = arg + " ~<b>mods</b>"
 	m = rp.Reply(rp.types.CUSTOM, text=text)
 	_push_system_message(m)
-	logging.info("%s sent mod message: %s", user, arg)
+	logging.info("%s отправлено сообщение модератора: %s", user, arg)
 
 @requireUser
 @requireRank(RANKS.admin)
@@ -366,7 +366,7 @@ def send_admin_message(user, arg):
 	text = arg + " ~<b>admins</b>"
 	m = rp.Reply(rp.types.CUSTOM, text=text)
 	_push_system_message(m)
-	logging.info("%s sent admin message: %s", user, arg)
+	logging.info("%s Админ отправил сообщение: %s", user, arg)
 
 @requireUser
 @requireRank(RANKS.mod)
@@ -389,7 +389,7 @@ def warn_user(user, msid, delete=False):
 			return rp.Reply(rp.types.ERR_ALREADY_WARNED)
 	if delete:
 		Sender.delete(msid)
-	logging.info("%s warned [%s]%s", user, user2.getObfuscatedId(), delete and " (message deleted)" or "")
+	logging.info("%s предупредил [%s]%s", user, user2.getObfuscatedId(), delete and " (сообщение удалено)" or "")
 	return rp.Reply(rp.types.SUCCESS)
 
 @requireUser
@@ -405,7 +405,7 @@ def delete_message(user, msid):
 	user2 = db.getUser(id=cm.user_id)
 	_push_system_message(rp.Reply(rp.types.MESSAGE_DELETED), who=user2, reply_to=msid)
 	Sender.delete(msid)
-	logging.info("%s deleted a message from [%s]", user, user2.getObfuscatedId())
+	logging.info("%s удалил сообщение из [%s]", user, user2.getObfuscatedId())
 	return rp.Reply(rp.types.SUCCESS)
 
 @requireUser
@@ -428,7 +428,7 @@ def uncooldown_user(user, oid2=None, username2=None):
 		user2.removeWarning()
 		was_until = user2.cooldownUntil
 		user2.cooldownUntil = None
-	logging.info("%s removed cooldown from %s (was until %s)", user, user2, format_datetime(was_until))
+	logging.info("%s rПерезарядка увеличена с %s (было до %s)", user, user2, format_datetime(was_until))
 	return rp.Reply(rp.types.SUCCESS)
 
 @requireUser
@@ -448,7 +448,7 @@ def blacklist_user(user, msid, reason):
 		rp.Reply(rp.types.ERR_BLACKLISTED, reason=reason, contact=blacklist_contact),
 		who=user2, reply_to=msid)
 	Sender.delete(msid)
-	logging.info("%s was blacklisted by %s for: %s", user2, user, reason)
+	logging.info("%s был внесен в черный список %s Причина: %s", user2, user, reason)
 	return rp.Reply(rp.types.SUCCESS)
 
 @requireUser
