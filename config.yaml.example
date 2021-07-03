@@ -11,7 +11,7 @@ allow_contacts: false
 allow_documents: true
 
 # allow mods to remove message without issuing a cooldown
-allow_remove_command: false
+allow_remove_command: yes
 
 # enable signing messages using /sign or /tsign as well as setting a tripcode
 enable_signing: false
