@@ -65,5 +65,5 @@ class Cache():
 				for d in self.idmap.values(): # delete from id mapping
 					d.pop(msid, None)
 		if len(ids) > 0:
-			logging.debug("Expired %d entries from cache", len(ids))
+			logging.debug("Истекшие %d записи из кеша", len(ids))
 		return ids
