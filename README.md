@@ -1,8 +1,8 @@
 secretlounge-ng
 ---------------
-Rewrite of [secretlounge](https://github.com/6697/secretlounge), a bot to make an anonymous group chat on Telegram.
+Перепишите [secretlounge] (https://github.com/6697/secretlounge),бота для создания анонимного группового чата в Telegram.
 
-## Setup
+## Установка
 ```
 $ pip3 install -r requirements.txt
 $ cp config.yaml.example config.yaml
@@ -10,57 +10,55 @@ Edit config.yaml with your favorite text editor.
 $ ./secretlounge-ng
 ```
 
-## @BotFather Setup
-Message [@BotFather](https://t.me/BotFather) to configure your bot as follows:
+## @BotFather - Настрйока
+Сообщение [@BotFather] (https://t.me/BotFather) для настройки вашего бота следующим образом:
 
-* `/setprivacy`: enabled
-* `/setjoingroups`: disabled
-* `/setcommands`: paste the command list below
+* `/setprivacy`: Включить
+* `/setjoingroups`: Отключить
+* `/setcommands`: вставьте список команд ниже
 
 ### Command list
 ```
-start - Join the chat (start receiving messages)
-stop - Leave the chat (stop receiving messages)
-users - Find out how many users are in the chat
-info - Get info about your account
-sign - Sign a message with your username
-s - Alias of sign
-tsign - Sign a message with your tripcode
-t - Alias of tsign
-motd - Show the welcome message
-version - Get version & source code of this bot
-modhelp - Show commands available to moderators
-adminhelp - Show commands available to admins
-toggledebug - Toggle debug mode (sends back all messages to you)
-togglekarma - Toggle karma notifications
-tripcode - Show or set a tripcode for your messages
+start - Присоединяйтесь к чату (начните получать сообщения)
+stop - Выйти из чата (перестать получать сообщения)
+users - Узнай, сколько пользователей в чате
+info - Получите информацию о своей учетной записи
+sign - Подпишите сообщение своим именем пользователя
+s - Никнейм
+tsign - Подпишите сообщение с помощью своего Tsign
+t - Псевдоним tsign
+motd - Показать приветственное сообщение
+version - Получить версию и исходный код этого бота
+modhelp - Показать команды, доступные модераторам
+adminhelp -Показать команды, доступные администраторам
+toggledebug - Переключить режим отладки (отправляет вам все сообщения)
+togglekarma - Переключить уведомления о карме
+tripcode - Показывать или устанавливать трип-код для ваших сообщений
 ```
 
 ## FAQ
 
-1. **How do I unban a blacklisted user from my bot?**
+1. **Как мне разблокировать пользователя из черного списка от моего бота?**
 
-To unban someone you need their Telegram User ID (preferred) or username/profile name.
-If you have a name you can use `./util/blacklist.py find` to search your bot's database for the user record.
+Чтобы разблокировать кого-то, вам нужен его идентификатор пользователя Telegram (предпочтительно) или имя пользователя / имя профиля.
+Если у вас есть имя, вы можете использовать `./util/blacklist.py find` для поиска записи пользователя в базе данных вашего бота.
 
-You can then run `./util/blacklist.py unban 12345678` to remove the ban.
+Затем вы можете запустить `./util/blacklist.py unban 12345678` чтобы нять бан.
 
-2. **How do I demote somone I promoted to mod/admin at some point?**
+2. **Как мне в какой-то момент понизить уровень кого-то, кого я повысил до мода / администратора?**
 
-If you already have an User ID in mind, proceed below.
-Otherwise you can either use the find utility like explained above or run
-`./util/perms.py list` to list all users with elevated rank.
+Если у вас уже есть идентификатор пользователя, действуйте ниже.
+В противном случае вы можете использовать утилиту поиска, как описано выше, или запустить
+`./util/perms.py list` чтобы перечислить всех пользователей с повышенным рейтингом.
 
-Simply run `./util/perms.py set 12345678 user` to remove the users' privileges.
+Просто запустите `./util/perms.py set 12345678 user` для удаления привилегий пользователей.
 
-This can also be used to grant an user higher privileges by exchanging the last argument with "*mod*" or "*admin*".
+Это также можно использовать для предоставления пользователю более высоких привилегий, заменив последний аргумент на «*mod*» или «*admin*»...
 
-3. **What is the suggested setup to run multiple bots?**
+3. **Какова предлагаемая настройка для запуска нескольких ботов?**
 
-The `blacklist.py` and `perms.py` script, including advanced functions like blacklist syncing
-(`./util/blacklist.py sync`), support a structure like the following where each bot
-has its' own subdirectory:
-
+В `blacklist.py` и `perms.py` скрипт, включая расширенные функции, такие как синхронизация черного списка
+(`./util/blacklist.py sync`), поддерживать структуру, подобную следующей, где каждый бот имеет собственный подкаталог:
 ```
 root folder
 \-- bot1
