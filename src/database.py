@@ -17,8 +17,8 @@ class SystemConfig():
 		self.motd = ""
 
 USER_PROPS = (
-	"id", "username", "realname", "rank", "joined", "left", "lastActive",
-	"cooldownUntil", "blacklistReason", "warnings", "warnExpiry", "karma",
+	"id", "юзернейм", "realname", "ранг", "зашел", "Вышел", "Последний Актив",
+	"кулдаун до", "причина блеклиста", "варны", "истечение варнов", "Карма",
 	"hideKarma", "debugEnabled", "tripcode"
 )
 
