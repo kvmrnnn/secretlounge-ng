@@ -89,54 +89,54 @@ format_strs = {
 	types.BOOLEAN_CONFIG: lambda enabled, **_:
 		"<b>{description!x}</b>: " + (enabled and "enabled" or "disabled"),
 
-	types.CHAT_JOIN: em("You joined the chat!"),
-	types.CHAT_LEAVE: em("You left the chat!"),
-	types.USER_IN_CHAT: em("You're already in the chat."),
-	types.USER_NOT_IN_CHAT: em("You're not in the chat yet. Use /start to join!"),
+	types.CHAT_JOIN: em("Вы присоединились к чату!"),
+	types.CHAT_LEAVE: em("Вы вышли из чата!"),
+	types.USER_IN_CHAT: em("Вы уже в чате."),
+	types.USER_NOT_IN_CHAT: em("Вы еще не в чате. Используйте /start присоединяйтесь!"),
 	types.GIVEN_COOLDOWN: lambda deleted, **_:
-		em( "You've been handed a cooldown of {duration!d} for this message"+
-			(deleted and " (message also deleted)" or "") ),
+		em( "Вам передано время восстановления этого сообщения на {duration!d}."+
+			(deleted and " (сообщение тоже удалено)" or "") ),
 	types.MESSAGE_DELETED:
-		em( "Your message has been deleted. No cooldown has been "
-			"given this time, but refrain from posting it again." ),
-	types.PROMOTED_MOD: em("You've been promoted to moderator, run /modhelp for a list of commands."),
-	types.PROMOTED_ADMIN: em("You've been promoted to admin, run /adminhelp for a list of commands."),
-	types.KARMA_THANK_YOU: em("You just gave this user some sweet karma, awesome!"),
+		em( "Ваше сообщение было удалено. Время восстановления не было "
+			"учитывая это время, но воздержитесь от повторной публикации." ),
+	types.PROMOTED_MOD: em("Вас повысили до модератора, запустите / modhelp, чтобы получить список команд."),
+	types.PROMOTED_ADMIN: em("Вас повысили до администратора, запустите / adminhelp, чтобы получить список команд."),
+	types.KARMA_THANK_YOU: em("Вы только что подарили этому пользователю сладкую карму, круто!"),
 	types.KARMA_NOTIFICATION:
-		em( "You've just been given sweet karma! (check /info to see your karma"+
-			" or /toggleKarma to turn these notifications off)" ),
+		em( "Тебе только что подарили сладкую карму! (проверьте /info, чтобы увидеть свою карму)"+
+			" или /toggleKarma, чтобы отключить эти уведомления)" ),
 	types.TRIPCODE_INFO: lambda tripcode, **_:
 		"<b>tripcode</b>: " + ("<code>{tripcode!x}</code>" if tripcode is not None else "unset"),
-	types.TRIPCODE_SET: em("Tripcode set. It will appear as: ") + "<b>{tripname!x}</b> <code>{tripcode!x}</code>",
+	types.TRIPCODE_SET: em("Набор кодов отключения. Это будет выглядеть так: ") + "<b>{tripname!x}</b> <code>{tripcode!x}</code>",
 
-	types.ERR_COMMAND_DISABLED: em("This command has been disabled."),
-	types.ERR_NO_REPLY: em("You need to reply to a message to use this command."),
-	types.ERR_NOT_IN_CACHE: em("Message not found in cache... (24h passed or bot was restarted)"),
+	types.ERR_COMMAND_DISABLED: em("Эта команда отключена."),
+	types.ERR_NO_REPLY: em("Чтобы использовать эту команду, вам необходимо ответить на сообщение."),
+	types.ERR_NOT_IN_CACHE: em("Сообщение не найдено в кеше... (прошло 24 часа или бот был перезапущен)"),
 	types.ERR_NO_USER: em("No user found by that name!"),
-	types.ERR_NO_USER_BY_ID: em("No user found by that id! Note that all ids rotate every 24 hours."),
-	types.ERR_COOLDOWN: em("Your cooldown expires at {until!t}"),
-	types.ERR_ALREADY_WARNED: em("A warning has already been issued for this message."),
-	types.ERR_NOT_IN_COOLDOWN: em("This user is not in a cooldown right now."),
+	types.ERR_NO_USER_BY_ID: em("По этому идентификатору не найдено ни одного пользователя! Обратите внимание, что все идентификаторы меняются каждые 24 часа."),
+	types.ERR_COOLDOWN: em("Время восстановления истекает через {until!t}"),
+	types.ERR_ALREADY_WARNED: em("Для этого сообщения уже было выдано предупреждение."),
+	types.ERR_NOT_IN_COOLDOWN: em("У этого пользователя сейчас нет перезарядки."),
 	types.ERR_BLACKLISTED: lambda reason, contact, **_:
-		em( "You've been blacklisted" + (reason and " for {reason!x}" or "") )+
+		em( "Вы попали в черный список" + (reason and " for {reason!x}" or "") )+
 		( em("\ncontact:") + " {contact}" if contact else "" ),
-	types.ERR_ALREADY_UPVOTED: em("You have already upvoted this message."),
-	types.ERR_UPVOTE_OWN_MESSAGE: em("You can't upvote your own message."),
-	types.ERR_SPAMMY: em("Your message has not been sent. Avoid sending messages too fast, try again later."),
-	types.ERR_SPAMMY_SIGN: em("Your message has not been sent. Avoid using /sign too often, try again later."),
+	types.ERR_ALREADY_UPVOTED: em("Вы уже проголосовали за это сообщение."),
+	types.ERR_UPVOTE_OWN_MESSAGE: em("Вы не можете проголосовать за собственное сообщение."),
+	types.ERR_SPAMMY: em("Ваше сообщение не было отправлено. Не отправляйте сообщения слишком быстро, попробуйте позже."),
+	types.ERR_SPAMMY_SIGN: em("Ваше сообщение не было отправлено. Избегайте слишком частого использования /sign, попробуйте еще раз позже."),
 	types.ERR_INVALID_TRIP_FORMAT:
-		em("Given tripcode is not valid, the format is ")+
+		em("Данный код поездки недействителен, формат: ")+
 		"<code>name#pass</code>" + em("."),
-	types.ERR_NO_TRIPCODE: em("You don't have a tripcode set."),
-	types.ERR_MEDIA_LIMIT: em("You can't send media or forward messages at this time, try again later."),
+	types.ERR_NO_TRIPCODE: em("У вас нет набора трипкодов."),
+	types.ERR_MEDIA_LIMIT: em("В настоящее время вы не можете отправлять мультимедийные сообщения или пересылать сообщения. Повторите попытку позже."),
 
 	types.USER_INFO: lambda warnings, cooldown, **_:
 		"<b>id</b>: {id}, <b>username</b>: {username!x}, <b>rank</b>: {rank_i} ({rank})\n"+
 		"<b>karma</b>: {karma}\n"+
 		"<b>warnings</b>: {warnings} " + smiley(warnings)+
-		( " (one warning will be removed on {warnExpiry!t})" if warnings > 0 else "" ) + ", "+
+		( " (одно предупреждение будет удалено {warnExpiry!t})" if warnings > 0 else "" ) + ", "+
 		"<b>cooldown</b>: "+
-		( cooldown and "yes, until {cooldown!t}" or "no" ),
+		( cooldown and "да, пока {cooldown!t}" or "нет" ),
 	types.USER_INFO_MOD: lambda cooldown, **_:
 		"<b>id</b>: {id}, <b>username</b>: anonymous, <b>rank</b>: n/a, "+
 		"<b>karma</b>: {karma}\n"+
@@ -149,26 +149,26 @@ format_strs = {
 
 	types.PROGRAM_VERSION: "secretlounge-ng v{version} ~ https://github.com/sfan5/secretlounge-ng",
 	types.HELP_MODERATOR:
-		"<i>Moderators can use the following commands</i>:\n"+
-		"  /modhelp - show this text\n"+
-		"  /modsay &lt;message&gt; - send an official moderator message\n"+
+		"<i>Модераторы могут использовать следующие команды</i>:\n"+
+		"  /modhelp - показать этот текст\n"+
+		"  /modsay &lt;message&gt; - отправить официальное сообщение модератору\n"+
 		"\n"+
-		"<i>Or reply to a message and use</i>:\n"+
-		"  /info - get info about the user that sent this message\n"+
-		"  /warn - warn the user that sent this message (cooldown)\n"+
-		"  /delete - delete a message and warn the user\n"
-		"  /remove - delete a message without a cooldown/warning",
+		"<i>Или ответьте на сообщение и используйте</i>:\n"+
+		"  /info - получить информацию о пользователе, отправившем это сообщение\n"+
+		"  /warn - предупредить пользователя, отправившего это сообщение (cooldown)\n"+
+		"  /delete - удалить сообщение и предупредить пользователя\n"
+		"  /remove - удалить сообщение без перезарядки / предупреждения",
 	types.HELP_ADMIN:
 		"<i>Admins can use the following commands</i>:\n"+
-		"  /adminhelp - show this text\n"+
-		"  /adminsay &lt;message&gt; - send an official admin message\n"+
-		"  /motd &lt;message&gt; - set the welcome message (HTML formatted)\n"+
-		"  /uncooldown &lt;id | username&gt; - remove cooldown from an user\n"+
-		"  /mod &lt;username&gt; - promote an user to the moderator rank\n"+
-		"  /admin &lt;username&gt; - promote an user to the admin rank\n"+
+		"  /adminhelp - показать этот текст\n"+
+		"  /adminsay &lt;message&gt; - отправить официальное сообщение админу\n"+
+		"  /motd &lt;message&gt; - установить приветствие (HTML formatted)\n"+
+		"  /uncooldown &lt;id | username&gt; - убрать кулдаун с пользователя\n"+
+		"  /mod &lt;username&gt; - поднять пользователя в ранг модератора\n"+
+		"  /admin &lt;username&gt; - поднять пользователя в ранг админа\n"+
 		"\n"+
-		"<i>Or reply to a message and use</i>:\n"+
-		"  /blacklist [reason] - blacklist the user who sent this message",
+		"<i>Или ответьте на сообщение и используйте</i>:\n"+
+		"  /blacklist [reason] - занести в черный список пользователя, отправившего это сообщение",
 }
 
 localization = {}
