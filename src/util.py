@@ -14,7 +14,7 @@ class Scheduler():
 		try:
 			f()
 		except Exception as e:
-			logging.exception("Exception raised during scheduled task")
+			logging.exception("Исключение возникло во время запланированной задачи")
 	def register(self, func, **kwargs):
 		interval = timedelta(**kwargs) // timedelta(seconds=1)
 		assert interval > 0
