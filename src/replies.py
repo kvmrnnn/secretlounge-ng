@@ -144,8 +144,8 @@ format_strs = {
 		( cooldown and "yes, until {cooldown!t}" or "no" ),
 	types.USERS_INFO: "<b>{count}</b> <i>users</i>",
 	types.USERS_INFO_EXTENDED:
-		"<b>{active}</b> <i>Активных</i>, {inactive} <i>Неактивных и</i> "+
-		"{blacklisted} <i>Внесенных в черных список.</i> (<i>total</i>: {total})",
+		"<b>{active}</b> <i>active</i>, {inactive} <i>inactive and</i> "+
+		"{blacklisted} <i>blacklisted</i> (<i>total</i>: {total})",
 
 	types.PROGRAM_VERSION: "secretlounge-ng v{version} ~ https://github.com/kvmrnnn/secretlounge-ng/",
 	types.HELP_MODERATOR:
