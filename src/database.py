@@ -17,8 +17,8 @@ class SystemConfig():
 		self.motd = ""
 
 USER_PROPS = (
-	"id", "username", "realname", "rang", "joined", "leaved", "LastActive",
-	"Cooldown", "blacklisted:", "warns", "warnstimeout", "karma",
+	"id", "username", "realname", "rank", "joined", "left", "lastActive",
+	"CooldownUntil", "blacklistReason:", "warnings", "warnExpiry", "karma",
 	"hideKarma", "debugEnabled", "tripcode"
 )
 
