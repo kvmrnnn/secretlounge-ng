@@ -145,7 +145,7 @@ format_strs = {
 	types.USERS_INFO: "<b>{count}</b> <i>users</i>",
 	types.USERS_INFO_EXTENDED:
 		"<b>{active}</b> <i>active</i>, {inactive} <i>inactive and</i> "+
-		"{blacklisted} <i>blacklisted</i> (<i>total</i>: {total})",
+		"{blacklisted} <i>blacklisted users</i> (<i>total</i>: {total})",
 
 	types.PROGRAM_VERSION: "secretlounge-ng v{version} ~ https://github.com/kvmrnnn/secretlounge-ng/",
 	types.HELP_MODERATOR:
